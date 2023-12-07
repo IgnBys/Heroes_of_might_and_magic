@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane fx:id="rootAnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="500.0" fitWidth="500.0">
+            <image>
+                <Image url = "https://upload.wikimedia.org/wikibooks/ru/thumb/7/73/Heroes-of-Might-Magic-III-spell-book.jpg/300px-Heroes-of-Might-Magic-III-spell-book.jpg"/>
+            </image>
+        </ImageView>
+        <VBox alignment="CENTER" prefHeight="500.0" prefWidth="500.0" spacing="20.0">
+            <Label text="Welcome to scene1"/>
+            <Button fx:id="button1" text="Back to scene"/>
+        </VBox>
+    </children>
+</AnchorPane>

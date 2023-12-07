@@ -45,6 +45,7 @@ public class GameEngine {
         turnQueue.next();
     }
 
+
     public void addObserver(final PropertyChangeListener aObserver) {
         observerSupport.addPropertyChangeListener(aObserver);
         turnQueue.addObserver(aObserver);
@@ -61,4 +62,6 @@ public class GameEngine {
     public boolean isCurrentCreature(Point aPoint) {
         return Optional.of(turnQueue.getCurrentCreature()).equals(board.getCreature(aPoint));
     }
+
+
 }

@@ -5,15 +5,20 @@ import pl.psi.Hero;
 import pl.psi.Point;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.psi.creatures.Creature;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Optional;
+import pl.psi.gui.Start;
 
 public class MainBattleController implements PropertyChangeListener {
     private final GameEngine gameEngine;
@@ -21,6 +26,8 @@ public class MainBattleController implements PropertyChangeListener {
     private GridPane gridMap;
     @FXML
     private Button passButton;
+    @FXML
+    private Button windowButton;
 
     public MainBattleController(final Hero aHero1, final Hero aHero2) {
         gameEngine = new GameEngine(aHero1, aHero2);
@@ -31,7 +38,10 @@ public class MainBattleController implements PropertyChangeListener {
         refreshGui();
         gameEngine.addObserver(this);
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> gameEngine.pass());
+        windowButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> Start.setNewScene());
     }
+
+
 
     private void refreshGui() {
         gridMap.getChildren()
