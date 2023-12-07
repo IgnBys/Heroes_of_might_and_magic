@@ -5,16 +5,28 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
+<?import java.lang.String?>
 <AnchorPane fx:id="rootAnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ImageView fitHeight="500.0" fitWidth="500.0">
             <image>
-                <Image url = "https://upload.wikimedia.org/wikibooks/ru/thumb/7/73/Heroes-of-Might-Magic-III-spell-book.jpg/300px-Heroes-of-Might-Magic-III-spell-book.jpg"/>
+                <Image url="/spells/book.png"/>
             </image>
         </ImageView>
         <VBox alignment="CENTER" prefHeight="500.0" prefWidth="500.0" spacing="20.0">
             <Label text="Welcome to scene1"/>
-            <Button fx:id="button1" text="Back to scene"/>
+            <Button fx:id="button1" text="Back to scene" >
+            <style>
+
+                -fx-pref-width: 66px;
+                -fx-pref-height: 48px;
+                -fx-padding: 0;
+                -fx-background-color: transparent;
+                -fx-background-image: url('spells/DamageSpells/Armageddon.png');
+                -fx-background-size: contain;
+                -fx-background-repeat: no-repeat;
+            </style>
+            </Button>
         </VBox>
     </children>
 </AnchorPane>

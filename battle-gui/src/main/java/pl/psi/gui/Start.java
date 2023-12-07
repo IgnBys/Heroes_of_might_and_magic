@@ -72,7 +72,6 @@ public class Start extends Application
 //            primaryStage.setScene(scene1);
 //            primaryStage.show();
             AnchorPane anchorPane = loader.load();
-            anchorPane.setStyle("-fx-background-image: url('https://upload.wikimedia.org/wikibooks/ru/thumb/7/73/Heroes-of-Might-Magic-III-spell-book.jpg/300px-Heroes-of-Might-Magic-III-spell-book.jpg');");
             Scene scene1 = new Scene(anchorPane, 500, 500);
             Stage primaryStage = new Stage();
             primaryStage.initModality(Modality.APPLICATION_MODAL);
