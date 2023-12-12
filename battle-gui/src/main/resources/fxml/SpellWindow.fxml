@@ -6,27 +6,43 @@
 <?import javafx.scene.image.ImageView?>
 
 <?import java.lang.String?>
-<AnchorPane fx:id="rootAnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <ImageView fitHeight="500.0" fitWidth="500.0">
-            <image>
-                <Image url="/spells/book.png"/>
-            </image>
-        </ImageView>
-        <VBox alignment="CENTER" prefHeight="500.0" prefWidth="500.0" spacing="20.0">
-            <Label text="Welcome to scene1"/>
-            <Button fx:id="button1" text="Back to scene" >
-            <style>
+<?import java.lang.Integer?>
+<?import javafx.geometry.Insets?>
+<GridPane styleClass="rootGridPane" stylesheets="@css/spell-decor.css" xmlns="http://javafx.com/javafx/8.0.171"
+          xmlns:fx="http://javafx.com/fxml/1">
 
-                -fx-pref-width: 66px;
-                -fx-pref-height: 48px;
-                -fx-padding: 0;
-                -fx-background-color: transparent;
-                -fx-background-image: url('spells/DamageSpells/Armageddon.png');
-                -fx-background-size: contain;
-                -fx-background-repeat: no-repeat;
-            </style>
-            </Button>
+    <HBox spacing="25">
+        <padding><Insets top="60" left="60"/></padding>
+        <VBox>
+            <Button fx:id="button1"  styleClass="button1" />
+            <Label text="Button 1"/>
         </VBox>
-    </children>
-</AnchorPane>
+        <VBox>
+            <Button fx:id="button2"  styleClass="button2" />
+            <Label text="Button 2"/>
+        </VBox>
+    </HBox>
+    <HBox spacing="25">
+        <padding><Insets top="150" left="60"/></padding>
+        <VBox>
+            <padding><Insets top="-11" /></padding>
+
+            <Button fx:id="button3"  styleClass="button3" />
+            <Label text="Button 3">
+                <padding><Insets top="-7" /></padding>
+
+            </Label>
+        </VBox>
+        <VBox>
+            <padding><Insets left="-15" /></padding>
+
+            <Button fx:id="button4"  styleClass="button4" />
+            <Label text="Button 4"/>
+
+
+        </VBox>
+    </HBox>
+
+
+
+</GridPane>

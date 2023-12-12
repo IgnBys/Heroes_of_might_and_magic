@@ -1,0 +1,38 @@
+.button1{
+    -fx-pref-width: 66px;
+    -fx-pref-height: 48px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../../spells/DamageSpells/Armageddon.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+}
+.button2{
+    -fx-pref-width: 66px;
+    -fx-pref-height: 48px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../../spells/DamageSpells/Fireball.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+}
+.button3{
+    -fx-pref-width: 85px;
+    -fx-pref-height: 65px;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../../spells/DamageSpells/Land_Mine.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+
+}.button4{
+     -fx-pref-width: 66px;
+     -fx-pref-height: 48px;
+     -fx-background-color: transparent;
+     -fx-background-image: url('../../spells/DamageSpells/Magic_Arrow.png');
+     -fx-background-size: contain;
+     -fx-background-repeat: no-repeat;
+ }
+
+.rootGridPane{
+    -fx-background-image: url('/spells/book.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
