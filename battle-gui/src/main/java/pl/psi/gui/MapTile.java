@@ -27,8 +27,8 @@ class MapTile extends StackPane {
         InputStream stream = getClass().getClassLoader().getResourceAsStream("creatures/" + aCreature.getName() + ".png");
         Image image = new Image(stream, 100, 100, false, false);
         ImageView imageView = new ImageView();
-        imageView.setFitHeight(RECTANGLE_SIZE);
-        imageView.setFitWidth(RECTANGLE_SIZE);
+        imageView.setFitHeight(60);
+        imageView.setFitWidth(60);
         imageView.setImage(image);
 
         Label label = new Label(aCreature.getAmount() + " ");
@@ -40,6 +40,24 @@ class MapTile extends StackPane {
         getChildren().add(imageView);
         getChildren().add(label);
     }
+
+//    void setSpell(final Spell aSpell) {
+//        InputStream stream = getClass().getClassLoader().getResourceAsStream("spells/DamageSpells/" + aSpell.getName() + ".png");
+//        Image image = new Image(stream, 100, 100, false, false);
+//        ImageView imageView = new ImageView();
+//        imageView.setFitHeight(60);
+//        imageView.setFitWidth(60);
+//        imageView.setImage(image);
+//
+//        Label label = new Label(aCreature.getAmount() + " ");
+//        label.setAlignment(Pos.BOTTOM_RIGHT);
+//        label.setMaxWidth(Double.MAX_VALUE);
+//        label.setMaxHeight(Double.MAX_VALUE);
+//        label.setStyle("-fx-font-weight: bold");
+//
+//        getChildren().add(imageView);
+//        getChildren().add(label);
+//    }
 
     void setBackground(final Color aColor) {
         rect.setFill(aColor);

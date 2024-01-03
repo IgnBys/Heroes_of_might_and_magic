@@ -24,7 +24,7 @@ public class GameEngine {
     public void attack(final Point point) {
         board.getCreature(point)
                 .ifPresent(defender -> turnQueue.getCurrentCreature()
-                        .attack(defender));
+                        .attack(defender, null));
         pass();
     }
 

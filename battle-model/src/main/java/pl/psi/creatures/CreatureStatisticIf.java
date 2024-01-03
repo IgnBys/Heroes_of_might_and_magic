@@ -6,10 +6,12 @@ public interface CreatureStatisticIf {
     String getName();
     int getAttack();
     int getArmor();
+    int getMagicResistance();
     int getMaxHp();
     int getMoveRange();
     Range< Integer > getDamage();
     int getTier();
     String getDescription();
     boolean isUpgraded();
+
 }

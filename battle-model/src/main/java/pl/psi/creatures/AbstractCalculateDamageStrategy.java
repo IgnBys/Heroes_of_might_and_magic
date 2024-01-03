@@ -1,7 +1,7 @@
 package pl.psi.creatures;
 
 import java.util.Random;
-
+import pl.psi.spells.*;
 abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
 {
 
@@ -17,9 +17,15 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
     }
 
     @Override
-    public int calculateDamage( final Creature aAttacker, final Creature aDefender )
+    public int calculateDamage( final Creature aAttacker,final Spell aSpell, final Creature aDefender )
     {
-        final int armor = getArmor( aDefender );
+        final int armor;
+        if (aSpell==null){
+            armor = getArmor( aDefender );
+        }
+        else {
+            armor = getMagicResistance(aDefender);
+        }
 
         final int randValue = rand.nextInt( aAttacker.getDamage()
             .upperEndpoint()
@@ -55,8 +61,13 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
         return (int)(aAttacker.getAmount() * oneCreatureDamageToDeal);
     }
 
+    protected int getMagicResistance( final Creature aDefender )
+    {
+        return aDefender.getStats().getMagicResistance();
+    }
+
     protected int getArmor( final Creature aDefender )
     {
-        return aDefender.getArmor();
+        return aDefender.getStats().getArmor();
     }
 }

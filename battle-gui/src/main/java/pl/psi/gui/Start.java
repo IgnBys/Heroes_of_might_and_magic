@@ -54,6 +54,9 @@ public class Start extends Application
         }
     }
 
+    private void printClickedButton (Button button) {
+        System.out.println(button.getId());
+    }
     public static void setNewScene(){
         final FXMLLoader loader = new FXMLLoader();
         loader.setLocation( Start.class.getClassLoader()
@@ -63,18 +66,22 @@ public class Start extends Application
             GridPane gridPane = loader.load();
             Stage primaryStage = new Stage();
             primaryStage.initModality(Modality.APPLICATION_MODAL);
-            Button button1 = (Button) gridPane.lookup("#button1");
-            Button button2 = (Button) gridPane.lookup("#button2");
-            Button button3 = (Button) gridPane.lookup("#button3");
-            Button button4 = (Button) gridPane.lookup("#button4");
+            Button button1 = new Button();
+            GridPane.setRowIndex(button1,0);
+            GridPane.setColumnIndex(button1, 0);
+
+//            Button button1 = (Button) gridPane.lookup("#button1");
+//            Button button2 = (Button) gridPane.lookup("#button2");
+//            Button button3 = (Button) gridPane.lookup("#button3");
+//            Button button4 = (Button) gridPane.lookup("#button4");
 //            GridPane.setRowIndex(button1, 0);
-//            GridPane.setColumnIndex(button1, 0);
+//                          GridPane.setColumnIndex(button1, 0);
 //            GridPane.setRowIndex(button2, 0);
 //            GridPane.setColumnIndex(button2, 1);
-            button1.setOnAction(e ->primaryStage.close());
-            button2.setOnAction(e ->primaryStage.close());
-            button3.setOnAction(e ->primaryStage.close());
-            button4.setOnAction(e ->primaryStage.close());
+            button1.setOnAction(e -> primaryStage.close());
+//            button2.setOnAction(e ->primaryStage.close());
+//            button3.setOnAction(e ->primaryStage.close());
+//            button4.setOnAction(e ->primaryStage.close());
             Scene scene1 = new Scene(gridPane, 500, 500);
 
             primaryStage.setScene(scene1);
@@ -82,10 +89,9 @@ public class Start extends Application
         }   catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
     }
+
+
     private Hero createP2()
     {
         final Hero ret = new Hero( List.of( new NecropolisFactory().create( true, 1, 100 ) ) );

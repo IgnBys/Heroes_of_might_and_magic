@@ -1,7 +1,7 @@
 package pl.psi.creatures;
 
 import java.beans.PropertyChangeEvent;
-
+import pl.psi.spells.*;
 import com.google.common.collect.Range;
 
 /**
@@ -35,8 +35,8 @@ class SelfHealAfterTurnCreature extends Creature {
     }
 
     @Override
-    public void attack(final Creature aDefender) {
-        decorated.attack(aDefender);
+    public void attack(final Creature aDefender, final Spell aSpell) {
+        decorated.attack(aDefender, aSpell);
     }
 
     @Override

@@ -9,7 +9,7 @@ package pl.psi.creatures;//  ***************************************************
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Random;
-
+import pl.psi.spells.*;
 import lombok.Setter;
 import pl.psi.TurnQueue;
 
@@ -40,9 +40,10 @@ public class Creature implements PropertyChangeListener {
         calculator = aCalculator;
     }
 
-    public void attack(final Creature aDefender) {
+    public void attack(final Creature aDefender, final Spell aSpell) {
+        // Why i cant make damage final????????????
         if (isAlive()) {
-            final int damage = getCalculator().calculateDamage(this, aDefender);
+            final int damage = getCalculator().calculateDamage(this,aSpell, aDefender);
             applyDamage(aDefender, damage);
             if (canCounterAttack(aDefender)) {
                 counterAttack(aDefender);
@@ -83,7 +84,7 @@ public class Creature implements PropertyChangeListener {
 
     private void counterAttack(final Creature aAttacker) {
         final int damage = aAttacker.getCalculator()
-                .calculateDamage(aAttacker, this);
+                .calculateDamage(aAttacker, null, this);
         applyDamage(this, damage);
         aAttacker.counterAttackCounter--;
     }
@@ -98,6 +99,10 @@ public class Creature implements PropertyChangeListener {
 
     int getArmor() {
         return stats.getArmor();
+    }
+
+    int getMagicResistance(){
+        return stats.getMagicResistance();
     }
 
     @Override
