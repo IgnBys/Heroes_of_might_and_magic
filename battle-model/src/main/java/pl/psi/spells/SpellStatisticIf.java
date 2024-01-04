@@ -5,10 +5,9 @@ import com.google.common.collect.Range;
 public interface SpellStatisticIf {
     String getName();
     int getAttack();
-    int getManaCost();
+    int getBuffAttack();
+    int getBuffDefence();
+    int getDebuffAttack();
+    int getDebuffDefence();
 
-//    int getCastRange();
-//    Range< Integer > getDamage();
-//    int getTier();
-//    boolean isUpgraded();
 }

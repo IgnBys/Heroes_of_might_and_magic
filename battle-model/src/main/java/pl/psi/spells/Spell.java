@@ -39,9 +39,17 @@ public class Spell {
     public int getAttack() {
         return stats.getAttack();
     }
-
-    public int getManaCost() {
-        return stats.getManaCost();
+    public int getBuffAttack() {
+        return stats.getBuffAttack();
+    }
+    public int getBuffDefence() {
+        return stats.getBuffDefence();
+    }
+    public int getDebuffAttack() {
+        return stats.getDebuffAttack();
+    }
+    public int getDebuffDefence() {
+        return stats.getDebuffDefence();
     }
 
     public static class Builder {

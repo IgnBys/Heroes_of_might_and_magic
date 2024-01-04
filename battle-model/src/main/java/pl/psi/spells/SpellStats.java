@@ -13,9 +13,9 @@ import lombok.Getter;
 public class SpellStats implements SpellStatisticIf {
     private final String name;
     private final int attack;
-    private final int manaCost;
-//    private final int castRange;
-//    private final Range< Integer > damage;
-//    private final int tier;
-//    private final boolean isUpgraded;
+    private final int buffAttack;
+    private final int buffDefence;
+    private final int debuffAttack;
+    private final int debuffDefence;
+    private final String description;
 }

@@ -8,36 +8,37 @@ import lombok.Getter;
 public enum SpellStatistic implements SpellStatisticIf
 {
     // NECROPILIS FRACTION
-    MAGIC_ARROW( "Magic_Arrow", 40, 4
-//            1,
-//            false
-    ), //
-    BLOODLUST("Bloodlust", 0, 4),
-    STONE_SKIN("Stone_Skin", 0, 4);
+    LIGHTNING_BOLT( "Lightning_Bolt", 40, 0,0,0,0, "Causes a bolt of lightning to strike the selected unit."),
+    BLOODLUST("Bloodlust", 0, 6, 0,0, 0, "Increases the hand-to-hand damage inflicted by the selected unit."),
+    STONE_SKIN("Stone_Skin", 0, 0,6,0,0,"Increases the defense of the selected/all friendly unit." ),
+    DISRUPTING_RAY("Disrapting_Ray", 0,0,0,0,5, "Reduces the selected enemy unit's defense strength. A single enemy may be targeted multiple times by this spell."),
+//    FORTUNE("Fortune", 0,0,0,0,0,"Increases the luck of the selected/all friendly unit."),
+    CURE("Cure", 0,0,10,0,0, "Heals."),
+    PRECISION("Precision", 0,6,0,0,0, "Increases the ranged attack of the selected/all friendly unit."),
+    SHIELD("Shield", 0, 0,0,6,0, "Shields a selected unit, reducing the amount of damage received from hand-to-hand attacks.");
 
 
     private final String name;
     private final int attack;
-    private final int manaCost;
-//    private final int castRange;
-//    private final Range< Integer > damage;
-//    private final int tier;
-//    private final boolean isUpgraded;
+    private final int buffAttack;
+    private final int buffDefence;
+    private final int debuffAttack;
+    private final int debuffDefence;
+    private final String description;
 
-    SpellStatistic( final String aName, final int aAttack, final int aManaCost
-//                    final int aCastRange,
-//                       final Range< Integer > aDamage,
-//                        final int aTier,
-//                        final boolean aIsUpgraded
-    )
+    SpellStatistic( final String aName, final int aAttack, final int aBuffAttack, final int aBuffDefence,
+                    final int aDebuffAttack, final int aDebuffDefence, final String aDescription)
     {
         name = aName;
         attack = aAttack;
-        manaCost = aManaCost;
-//        castRange = aCastRange;
-//        damage = aDamage;
-//        tier = aTier;
-//        isUpgraded = aIsUpgraded;
+        buffAttack = aBuffAttack;
+        buffDefence = aBuffDefence;
+        debuffAttack = aDebuffAttack;
+        debuffDefence = aDebuffDefence;
+        description = aDescription;
+
+
+
     }
 
 
