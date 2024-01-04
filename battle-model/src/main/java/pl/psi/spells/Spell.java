@@ -21,14 +21,12 @@ import java.beans.PropertyChangeListener;
 @Getter
 public class Spell {
     private SpellStatisticIf stats;
-    private SpellDamageCalculatorIf spellCalculator;
     Spell() {
 
     }
 
-    private Spell(final SpellStatisticIf aStats, final SpellDamageCalculatorIf aCalculator) {
+    private Spell(final SpellStatisticIf aStats) {
         stats = aStats;
-        spellCalculator = aCalculator;
 
     }
 
@@ -38,7 +36,7 @@ public class Spell {
         return stats.getName();
     }
 
-    public int Attack() {
+    public int getAttack() {
         return stats.getAttack();
     }
 
@@ -48,11 +46,7 @@ public class Spell {
 
     public static class Builder {
         private SpellStatisticIf statistic;
-        private SpellDamageCalculatorIf spellCalculator;
-        Spell.Builder spellCalculator(final SpellDamageCalculatorIf aCalc) {
-            spellCalculator = aCalc;
-            return this;
-        }
+
 
         public Spell.Builder statistic(final SpellStatisticIf aStatistic) {
             statistic = aStatistic;
@@ -60,7 +54,7 @@ public class Spell {
         }
 
         public Spell build() {
-            return new Spell(statistic, spellCalculator);
+            return new Spell(statistic);
         }
     }
 }

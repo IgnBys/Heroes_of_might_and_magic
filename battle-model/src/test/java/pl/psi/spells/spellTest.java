@@ -35,10 +35,34 @@ public class spellTest {
                         .magicResistance(10)
                         .build())
                 .build();
-        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(5).build()).build();
+        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(50).build()).build();
         // when
         angel.attack(dragon, AVADAKEDAVRA);
         // then
         assertThat(dragon.getCurrentHp()).isEqualTo(70);
+    }
+
+    @Test
+    void creatureShouldAttackWithSpellEndOpponentShouldCounterAttackProperly() {
+        // given
+        final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .attack(50)
+                        .armor(10)
+                        .build())
+                .build();
+        final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .attack(50)
+                        .magicResistance(10)
+                        .build())
+                .build();
+        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(50).build()).build();
+        // when
+        angel.attack(dragon, AVADAKEDAVRA);
+        // then
+        assertThat(angel.getCurrentHp()).isEqualTo(70);
     }
 }

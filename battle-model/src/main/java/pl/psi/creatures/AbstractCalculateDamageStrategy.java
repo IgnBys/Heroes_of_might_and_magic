@@ -69,15 +69,15 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
     }
 
     protected int getMagicAttack(final Spell aSpell){
-        return aSpell.getStats().getAttack();
+        return aSpell.getAttack();
     }
     protected int getMagicResistance( final Creature aDefender )
     {
-        return aDefender.getStats().getMagicResistance();
+        return aDefender.getMagicResistance();
     }
 
     protected int getArmor( final Creature aDefender )
     {
-        return aDefender.getStats().getArmor();
+        return aDefender.getArmor();
     }
 }

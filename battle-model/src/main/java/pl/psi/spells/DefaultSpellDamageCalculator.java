@@ -1,4 +1,4 @@
-package pl.psi.spells;
-
-public class DefaultSpellDamageCalculator {
-}
+//package pl.psi.spells;
+//
+//public class DefaultSpellDamageCalculator a{
+//}
