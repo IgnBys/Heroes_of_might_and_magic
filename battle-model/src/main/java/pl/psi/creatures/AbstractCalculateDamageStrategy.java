@@ -19,12 +19,14 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
     @Override
     public int calculateDamage( final Creature aAttacker,final Spell aSpell, final Creature aDefender )
     {
-        final int armor;
+        final int armor, attack;
         if (aSpell==null){
             armor = getArmor( aDefender );
+            attack = getAttack (aAttacker);
         }
         else {
             armor = getMagicResistance(aDefender);
+            attack = getMagicAttack (aSpell);
         }
 
         final int randValue = rand.nextInt( aAttacker.getDamage()
@@ -35,9 +37,10 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
                 .lowerEndpoint();
 
         double oneCreatureDamageToDeal;
-        if( aAttacker.getAttack() >= armor )
+        //TODO: make spell cast and fisical damage when cheking difference between attack and armor
+        if( attack >= armor )
         {
-            int attackPoints = aAttacker.getAttack() - armor;
+            int attackPoints = attack - armor;
             if( attackPoints > MAX_ATTACK_DIFF )
             {
                 attackPoints = MAX_ATTACK_DIFF;
@@ -46,7 +49,7 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
         }
         else
         {
-            int defencePoints = armor - aAttacker.getAttack();
+            int defencePoints = armor - attack;
             if( defencePoints > MAX_DEFENCE_DIFF )
             {
                 defencePoints = MAX_DEFENCE_DIFF;
@@ -61,6 +64,13 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
         return (int)(aAttacker.getAmount() * oneCreatureDamageToDeal);
     }
 
+    protected int getAttack(final Creature aAttacker){
+        return aAttacker.getAttack();
+    }
+
+    protected int getMagicAttack(final Spell aSpell){
+        return aSpell.getStats().getAttack();
+    }
     protected int getMagicResistance( final Creature aDefender )
     {
         return aDefender.getStats().getMagicResistance();

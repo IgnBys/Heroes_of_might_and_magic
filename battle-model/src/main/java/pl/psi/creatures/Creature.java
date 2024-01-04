@@ -41,7 +41,6 @@ public class Creature implements PropertyChangeListener {
     }
 
     public void attack(final Creature aDefender, final Spell aSpell) {
-        // Why i cant make damage final????????????
         if (isAlive()) {
             final int damage = getCalculator().calculateDamage(this,aSpell, aDefender);
             applyDamage(aDefender, damage);
