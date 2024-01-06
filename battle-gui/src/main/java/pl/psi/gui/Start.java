@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import pl.psi.creatures.NecropolisFactory;
+import pl.psi.spells.*;
 
 public class Start extends Application
 {
@@ -94,13 +95,20 @@ public class Start extends Application
 
     private Hero createP2()
     {
-        final Hero ret = new Hero( List.of( new NecropolisFactory().create( true, 1, 100 ) ) );
+        final Hero ret = new Hero( List.of(
+                new NecropolisFactory().create( true, 1, 100 ) ),
+                List.of(new Spell.Builder().statistic(SpellStatistic.DISRUPTING_RAY).build(),
+                        new Spell.Builder().statistic(SpellStatistic.BLOODLUST).build()
+                ) );
         return ret;
     }
 
     private Hero createP1()
     {
-        final Hero ret = new Hero( List.of( new NecropolisFactory().create( false, 1, 5 ) ) );
+        final Hero ret = new Hero( List.of( new NecropolisFactory().create( false, 1, 5 ) ),
+                List.of(new Spell.Builder().statistic(SpellStatistic.SHIELD).build(),
+                        new Spell.Builder().statistic(SpellStatistic.LIGHTNING_BOLT).build(),
+                        new Spell.Builder().statistic(SpellStatistic.STONE_SKIN).build()));
         return ret;
     }
 
