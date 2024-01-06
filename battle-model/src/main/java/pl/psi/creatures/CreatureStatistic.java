@@ -51,9 +51,9 @@ public enum CreatureStatistic implements CreatureStatisticIf {
             true);//
 
     private final String name;
-    private final int attack;
-    private final int armor;
-    private final int magicResistance;
+    private final int basicAttack;
+    private final int basicArmor;
+    private final int basicMagicResistance;
     private final int maxHp;
     private final int moveRange;
     private final Range<Integer> damage;
@@ -65,9 +65,9 @@ public enum CreatureStatistic implements CreatureStatisticIf {
                       final int aMoveRange, final Range<Integer> aDamage, final int aTier, final String aDescription,
                       final boolean aIsUpgraded) {
         name = aName;
-        attack = aAttack;
-        armor = aArmor;
-        magicResistance = aMagicResistance;
+        basicAttack = aAttack;
+        basicArmor = aArmor;
+        basicMagicResistance = aMagicResistance;
         maxHp = aMaxHp;
         moveRange = aMoveRange;
         damage = aDamage;

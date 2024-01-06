@@ -21,15 +21,15 @@ public class CreatureTest {
         final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(Range.closed(10, 10))
-                        .attack(50)
-                        .armor(0)
+                        .basicAttack(50)
+                        .basicArmor(0)
                         .build())
                 .build();
         final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(NOT_IMPORTANT_DMG)
-                        .attack(0)
-                        .armor(10)
+                        .basicAttack(0)
+                        .basicArmor(10)
                         .build())
                 .build();
         // when
@@ -43,15 +43,15 @@ public class CreatureTest {
         final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(NOT_IMPORTANT_DMG)
-                        .attack(1)
-                        .armor(0)
+                        .basicAttack(1)
+                        .basicArmor(0)
                         .build())
                 .build();
         final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(NOT_IMPORTANT_DMG)
-                        .attack(0)
-                        .armor(10)
+                        .basicAttack(0)
+                        .basicArmor(10)
                         .build())
                 .build();
         // when
@@ -65,14 +65,14 @@ public class CreatureTest {
         final Creature attacker = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(NOT_IMPORTANT_DMG)
-                        .attack(0)
-                        .armor(10)
+                        .basicAttack(0)
+                        .basicArmor(10)
                         .build())
                 .build();
         final Creature defender = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(Range.closed(10, 10))
-                        .attack(10)
+                        .basicAttack(10)
                         .build())
                 .build();
         // when
@@ -86,15 +86,15 @@ public class CreatureTest {
         final Creature attacker = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(NOT_IMPORTANT_DMG)
-                        .attack(1000)
-                        .armor(10)
+                        .basicAttack(1000)
+                        .basicArmor(10)
                         .build())
                 .build();
         final Creature defender = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(NOT_IMPORTANT_DMG)
-                        .attack(20)
-                        .armor(5)
+                        .basicAttack(20)
+                        .basicArmor(5)
                         .build())
                 .build();
         // when
@@ -108,15 +108,15 @@ public class CreatureTest {
         final Creature attacker = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(NOT_IMPORTANT_DMG)
-                        .attack(0)
-                        .armor(0)
+                        .basicAttack(0)
+                        .basicArmor(0)
                         .build())
                 .build();
 
         final Creature defender = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(Range.closed(10, 10))
-                        .attack(0)
+                        .basicAttack(0)
                         .build())
                 .build();
 

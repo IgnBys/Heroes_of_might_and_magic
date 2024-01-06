@@ -24,10 +24,15 @@ import lombok.Getter;
 public class Creature implements PropertyChangeListener {
     private CreatureStatisticIf stats;
     @Setter
+    private int currentArmor;
+    private int currentAttack;
+    private int currentMagicResistance;
     private int amount;
     private int currentHp;
     private int counterAttackCounter = 1;
     private DamageCalculatorIf calculator;
+
+
 
     Creature() {
     }
@@ -35,6 +40,9 @@ public class Creature implements PropertyChangeListener {
     private Creature(final CreatureStatisticIf aStats, final DamageCalculatorIf aCalculator,
                      final int aAmount) {
         stats = aStats;
+        currentArmor = stats.getBasicArmor();
+        currentAttack = stats.getBasicAttack();
+        currentMagicResistance = stats.getBasicMagicResistance();
         amount = aAmount;
         currentHp = stats.getMaxHp();
         calculator = aCalculator;
@@ -42,6 +50,7 @@ public class Creature implements PropertyChangeListener {
 
     public void attack(final Creature aDefender, final Spell aSpell) {
         if (isAlive()) {
+//            applySpellChange();
             final int damage = getCalculator().calculateDamage(this,aSpell, aDefender);
             applyDamage(aDefender, damage);
             if (canCounterAttack(aDefender)) {
@@ -49,6 +58,7 @@ public class Creature implements PropertyChangeListener {
             }
         }
     }
+
 
     public boolean isAlive() {
         return getAmount() > 0;
@@ -72,11 +82,29 @@ public class Creature implements PropertyChangeListener {
     public int getMaxHp() {
         return stats.getMaxHp();
     }
+    public void setCurrentAttack(final int aCurrentAttack) {
+        currentAttack = aCurrentAttack;
+    }
+
+    public void setCurrentArmor(final int aCurrentArmor, final int aCurrentMagicResistance) {
+        currentArmor = aCurrentArmor;
+        currentMagicResistance = aCurrentMagicResistance;
+    }
+
+    public void useCreatureCalculator(final Creature aCreature, final Spell aSpell){
+        getCalculator().calculateCreatureAttack(aSpell, aCreature);
+        getCalculator().calculateCreatureArmor(aSpell, aCreature);
+    }
+//    protected void setCurrentMagicResistance(final int aCurrentMagicResistance) {
+//        currentMagicResistance = aCurrentMagicResistance;
+//    }
 
     protected void setCurrentHp(final int aCurrentHp) {
         currentHp = aCurrentHp;
     }
-
+    public void setAmount(final int aAmount) {
+        amount = aAmount;
+    }
     private boolean canCounterAttack(final Creature aDefender) {
         return aDefender.getCounterAttackCounter() > 0 && aDefender.getCurrentHp() > 0;
     }
@@ -93,15 +121,15 @@ public class Creature implements PropertyChangeListener {
     }
 
     int getAttack() {
-        return stats.getAttack();
+        return stats.getBasicAttack();
     }
 
     int getArmor() {
-        return stats.getArmor();
+        return stats.getBasicArmor();
     }
 
     int getMagicResistance(){
-        return stats.getMagicResistance();
+        return stats.getBasicMagicResistance();
     }
 
     @Override

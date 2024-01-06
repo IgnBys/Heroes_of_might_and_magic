@@ -16,12 +16,20 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
         rand = aRand;
     }
 
+
+    public void calculateCreatureArmor(final Spell aSpell, final Creature aCreature){
+        aCreature.setCurrentArmor(getChangeArmor(aCreature.getCurrentArmor(), aSpell.getChangeArmor()));
+    }
+    public void calculateCreatureAttack(final Spell aSpell, final Creature aCreature){
+        aCreature.setCurrentAttack(getChangeAttack(aCreature.getCurrentAttack(), aSpell.getChangeAttack()));
+    }
+
     @Override
     public int calculateDamage( final Creature aAttacker,final Spell aSpell, final Creature aDefender )
     {
         final int armor, attack;
         if (aSpell==null){
-            armor = getArmor( aDefender );
+            armor = getArmor( aDefender);
             attack = getAttack (aAttacker);
         }
         else {
@@ -64,15 +72,29 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
         return (int)(aAttacker.getAmount() * oneCreatureDamageToDeal);
     }
 
+    protected int getChangeArmor(final int targetArmor, final int changeArmor) {
+        int effectiveArmor = targetArmor + changeArmor;
+        return Math.max(effectiveArmor, 0);
+    }
+
+    protected int getChangeAttack(final int targetAttack, final int changeAttack) {
+        int effectiveDamage = targetAttack + changeAttack;
+        return Math.max(effectiveDamage, 0);
+    }
+
+
     protected int getAttack(final Creature aAttacker){
+//        return calculateEffectiveDamage(aAttacker.getCurrentAttack(), aSpell.getChangeAttack());
         return aAttacker.getAttack();
     }
 
     protected int getMagicAttack(final Spell aSpell){
+
         return aSpell.getAttack();
     }
     protected int getMagicResistance( final Creature aDefender )
     {
+
         return aDefender.getMagicResistance();
     }
 

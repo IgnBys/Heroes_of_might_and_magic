@@ -24,15 +24,15 @@ public class spellTest {
         final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(Range.closed(10, 10))
-                        .attack(50)
-                        .armor(0)
+                        .basicAttack(50)
+                        .basicArmor(0)
                         .build())
                 .build();
         final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
-                        .damage(NOT_IMPORTANT_DMG)
-                        .attack(0)
-                        .magicResistance(10)
+                        .damage(Range.closed(10, 10))
+                        .basicAttack(0)
+                        .basicMagicResistance(10)
                         .build())
                 .build();
         final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(50).build()).build();
@@ -43,20 +43,37 @@ public class spellTest {
     }
 
     @Test
-    void creatureShouldAttackWithSpellEndOpponentShouldCounterAttackProperly() {
+    void creatureShouldTakeSomeChangesFromSpell() {
+        // given
+        final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .basicAttack(10)
+                        .basicMagicResistance(10).basicArmor(10)
+                        .build())
+                .build();
+        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder()
+                .changeArmor(6).build()).build();
+        // when
+        AVADAKEDAVRA.cast(dragon);
+        // then
+        assertThat(dragon.getCurrentAttack()).isEqualTo(10);
+    }
+    @Test
+    void creatureShouldAttackWithSpellAndOpponentShouldCounterAttackProperly() {
         // given
         final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(Range.closed(10, 10))
-                        .attack(50)
-                        .armor(10)
+                        .basicAttack(50)
+                        .basicArmor(10)
                         .build())
                 .build();
         final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(Range.closed(10, 10))
-                        .attack(50)
-                        .magicResistance(10)
+                        .basicAttack(50)
+                        .basicMagicResistance(10)
                         .build())
                 .build();
         final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(50).build()).build();

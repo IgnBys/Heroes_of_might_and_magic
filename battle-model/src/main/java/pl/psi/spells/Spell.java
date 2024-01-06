@@ -21,6 +21,7 @@ import java.beans.PropertyChangeListener;
 @Getter
 public class Spell {
     private SpellStatisticIf stats;
+
     Spell() {
 
     }
@@ -30,7 +31,21 @@ public class Spell {
 
     }
 
+    public void cast(final Creature aCreature) {
+        if (aCreature.isAlive()) {
+            applySpell(aCreature, stats);
+        }
+    }
 
+    public void applySpell(final Creature aCreature, final SpellStatisticIf stats) {
+        if (stats.getAttack() != 0) {
+            aCreature.attack(aCreature, this);
+        }
+        else {
+            aCreature.useCreatureCalculator(aCreature,this);
+//            aCreature.setCurrentArmor(aCreature.getCurrentArmor(),);
+        }
+    }
 
     public String getName() {
         return stats.getName();
@@ -39,17 +54,13 @@ public class Spell {
     public int getAttack() {
         return stats.getAttack();
     }
-    public int getBuffAttack() {
-        return stats.getBuffAttack();
+
+    public int getChangeAttack() {
+        return stats.getChangeAttack();
     }
-    public int getBuffDefence() {
-        return stats.getBuffDefence();
-    }
-    public int getDebuffAttack() {
-        return stats.getDebuffAttack();
-    }
-    public int getDebuffDefence() {
-        return stats.getDebuffDefence();
+
+    public int getChangeArmor() {
+        return stats.getChangeArmor();
     }
 
     public static class Builder {

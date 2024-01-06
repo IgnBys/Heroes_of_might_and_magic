@@ -13,9 +13,7 @@ import lombok.Getter;
 public class SpellStats implements SpellStatisticIf {
     private final String name;
     private final int attack;
-    private final int buffAttack;
-    private final int buffDefence;
-    private final int debuffAttack;
-    private final int debuffDefence;
+    private final int changeAttack;
+    private final int changeArmor;
     private final String description;
 }

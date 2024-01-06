@@ -4,9 +4,9 @@ import com.google.common.collect.Range;
 
 public interface CreatureStatisticIf {
     String getName();
-    int getAttack();
-    int getArmor();
-    int getMagicResistance();
+    int getBasicAttack();
+    int getBasicArmor();
+    int getBasicMagicResistance();
     int getMaxHp();
     int getMoveRange();
     Range< Integer > getDamage();
