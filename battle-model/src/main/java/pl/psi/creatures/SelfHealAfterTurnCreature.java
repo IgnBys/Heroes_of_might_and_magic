@@ -35,8 +35,8 @@ class SelfHealAfterTurnCreature extends Creature {
     }
 
     @Override
-    public void attack(final Creature aDefender, final Spell aSpell) {
-        decorated.attack(aDefender, aSpell);
+    public void attack(final Creature aDefender) {
+        decorated.attack(aDefender);
     }
 
     @Override
@@ -75,7 +75,7 @@ class SelfHealAfterTurnCreature extends Creature {
     }
 
     @Override
-    protected void setCurrentHp(int aCurrentHp) {
+    public void setCurrentHp(int aCurrentHp) {
         decorated.setCurrentHp(aCurrentHp);
     }
 

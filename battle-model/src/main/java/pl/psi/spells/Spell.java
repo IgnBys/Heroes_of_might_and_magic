@@ -33,20 +33,20 @@ public class Spell {
 
     public void cast(final Creature aCreature) {
         if (aCreature.isAlive()) {
-            applySpell(aCreature, stats);
+            aCreature.applySpell(aCreature, this);
+
         }
     }
 
-    public void applySpell(final Creature aCreature, final SpellStatisticIf stats) {
-        if (stats.getAttack() != 0) {
-            aCreature.attack(aCreature, this);
-        }
-        else {
-            aCreature.useCreatureCalculator(aCreature,this);
-//            aCreature.setCurrentArmor(aCreature.getCurrentArmor(),);
-        }
-    }
+    //    public void spellAttack(final Creature aCreature, final Spell aSpell){
+//        final int attack = aSpell.getAttack();
+//        currentHp = attack * aCreature.getMagicResistance();
+//    }
 
+    public void useSpellCalculator(final Creature aCreature, final Spell aSpell){
+        SpellCalculator.calculateCreatureAttack(aSpell, aCreature);
+        SpellCalculator.calculateCreatureArmor(aSpell, aCreature);
+    }
     public String getName() {
         return stats.getName();
     }
@@ -71,6 +71,8 @@ public class Spell {
             statistic = aStatistic;
             return this;
         }
+
+
 
         public Spell build() {
             return new Spell(statistic);

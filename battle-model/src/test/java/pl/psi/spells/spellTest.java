@@ -19,37 +19,31 @@ public class spellTest {
     private static final Range<Integer> NOT_IMPORTANT_DMG = Range.closed(0, 0);
 
     @Test
-    void creatureShouldAttackWithSpellProperly() {
-        // given
-        final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
-                        .maxHp(100)
-                        .damage(Range.closed(10, 10))
-                        .basicAttack(50)
-                        .basicArmor(0)
-                        .build())
-                .build();
-        final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
-                        .maxHp(100)
-                        .damage(Range.closed(10, 10))
-                        .basicAttack(0)
-                        .basicMagicResistance(10)
-                        .build())
-                .build();
-        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(50).build()).build();
-        // when
-        angel.attack(dragon, AVADAKEDAVRA);
-        // then
-        assertThat(dragon.getCurrentHp()).isEqualTo(70);
-    }
-
-    @Test
-    void creatureShouldTakeSomeChangesFromSpell() {
+    void creatureShouldTakeDamageFromSpell() {
         // given
         final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(Range.closed(10, 10))
                         .basicAttack(10)
-                        .basicMagicResistance(10).basicArmor(10)
+                        .basicMagicResistance(20).basicArmor(10)
+                        .build())
+                .build();
+        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(10)
+                .changeArmor(6).build()).build();
+        // when
+        AVADAKEDAVRA.cast(dragon);
+        // then
+        assertThat(dragon.getCurrentHp()).isEqualTo(94);
+    }
+
+    @Test
+    void checkCreaturesArmorAfterBuff() {
+        // given
+        final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .basicAttack(10)
+                        .basicMagicResistance(20).basicArmor(10)
                         .build())
                 .build();
         final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder()
@@ -57,29 +51,49 @@ public class spellTest {
         // when
         AVADAKEDAVRA.cast(dragon);
         // then
-        assertThat(dragon.getCurrentAttack()).isEqualTo(10);
+        assertThat(dragon.getCurrentArmor()).isEqualTo(16);
     }
+
     @Test
-    void creatureShouldAttackWithSpellAndOpponentShouldCounterAttackProperly() {
+    void checkCreaturesAttackAfterBuff() {
         // given
-        final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
-                        .maxHp(100)
-                        .damage(Range.closed(10, 10))
-                        .basicAttack(50)
-                        .basicArmor(10)
-                        .build())
-                .build();
         final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
                         .maxHp(100)
                         .damage(Range.closed(10, 10))
-                        .basicAttack(50)
-                        .basicMagicResistance(10)
+                        .basicAttack(5)
+                        .basicMagicResistance(20).basicArmor(10)
                         .build())
                 .build();
-        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(50).build()).build();
+        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder()
+                .changeArmor(6).build()).build();
         // when
-        angel.attack(dragon, AVADAKEDAVRA);
+        AVADAKEDAVRA.cast(dragon);
         // then
-        assertThat(angel.getCurrentHp()).isEqualTo(70);
+
+        assertThat(dragon.getCurrentMagicResistance()).isEqualTo(26);
     }
+
+    @Test
+    void checkCreaturesHpAfterUsingSpellBuff() {
+        // given
+        final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .basicAttack(5)
+                        .basicMagicResistance(20).basicArmor(10)
+                        .build())
+                .build();
+        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder()
+                .changeArmor(6).build()).build();
+        final Spell AVADAKEDAVRA2 = new Spell.Builder().statistic(SpellStats.builder().attack(10)
+                .build()).build();
+        // when
+        AVADAKEDAVRA.cast(dragon);
+        AVADAKEDAVRA2.cast(dragon);
+
+        // then
+
+        assertThat(dragon.getCurrentHp()).isEqualTo(96);
+    }
+
 }

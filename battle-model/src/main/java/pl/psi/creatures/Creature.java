@@ -9,6 +9,7 @@ package pl.psi.creatures;//  ***************************************************
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Random;
+
 import pl.psi.spells.*;
 import lombok.Setter;
 import pl.psi.TurnQueue;
@@ -33,7 +34,6 @@ public class Creature implements PropertyChangeListener {
     private DamageCalculatorIf calculator;
 
 
-
     Creature() {
     }
 
@@ -48,10 +48,10 @@ public class Creature implements PropertyChangeListener {
         calculator = aCalculator;
     }
 
-    public void attack(final Creature aDefender, final Spell aSpell) {
+    public void attack(final Creature aDefender) {
         if (isAlive()) {
 //            applySpellChange();
-            final int damage = getCalculator().calculateDamage(this,aSpell, aDefender);
+            final int damage = getCalculator().calculateDamage(this, aDefender);
             applyDamage(aDefender, damage);
             if (canCounterAttack(aDefender)) {
                 counterAttack(aDefender);
@@ -72,16 +72,41 @@ public class Creature implements PropertyChangeListener {
         if (hp <= 0) {
             aDefender.setCurrentHp(aDefender.getMaxHp() - hp);
             aDefender.setAmount(aDefender.getAmount() - 1);
-        }
-        else{
+        } else {
             aDefender.setCurrentHp(hp);
         }
         aDefender.setAmount(aDefender.getAmount() - amountToSubstract);
     }
 
+    public void applySpell(final Creature aCreature, final Spell aSpell) {
+        if (aSpell.getAttack() != 0) {
+//            aCreature.attack(aCreature, this);
+            //aCreature.spellAttack(aCreature, this);
+            final int damage = (int) (aSpell.getAttack() - (aCreature.getCurrentMagicResistance()) * 0.2);
+            final int hp = aCreature.getCurrentHp() - damage;
+            aCreature.setCurrentHp(hp);
+            if (hp <= 0) {
+                aCreature.setAmount(aCreature.getAmount() - 1);
+            }
+
+            //!!!!!!!!!apply spell damage (new method) w creature
+            // spell damage * 0,2(float magic resistance) = HP
+//     !!!!       send this method to class creature
+
+
+//     !!!!       zmiana statystyk na jakąs ilość tur
+
+            //mozna zrobic class creatureBuff który będzie przechowywał listę wszystkich obrażeń
+            //
+        } else {
+            aSpell.useSpellCalculator(aCreature, aSpell);
+        }
+    }
+
     public int getMaxHp() {
         return stats.getMaxHp();
     }
+
     public void setCurrentAttack(final int aCurrentAttack) {
         currentAttack = aCurrentAttack;
     }
@@ -91,27 +116,26 @@ public class Creature implements PropertyChangeListener {
         currentMagicResistance = aCurrentMagicResistance;
     }
 
-    public void useCreatureCalculator(final Creature aCreature, final Spell aSpell){
-        getCalculator().calculateCreatureAttack(aSpell, aCreature);
-        getCalculator().calculateCreatureArmor(aSpell, aCreature);
-    }
+
 //    protected void setCurrentMagicResistance(final int aCurrentMagicResistance) {
 //        currentMagicResistance = aCurrentMagicResistance;
 //    }
 
-    protected void setCurrentHp(final int aCurrentHp) {
+    public void setCurrentHp(final int aCurrentHp) {
         currentHp = aCurrentHp;
     }
+
     public void setAmount(final int aAmount) {
         amount = aAmount;
     }
+
     private boolean canCounterAttack(final Creature aDefender) {
         return aDefender.getCounterAttackCounter() > 0 && aDefender.getCurrentHp() > 0;
     }
 
     private void counterAttack(final Creature aAttacker) {
         final int damage = aAttacker.getCalculator()
-                .calculateDamage(aAttacker, null, this);
+                .calculateDamage(aAttacker, this);
         applyDamage(this, damage);
         aAttacker.counterAttackCounter--;
     }
@@ -128,7 +152,7 @@ public class Creature implements PropertyChangeListener {
         return stats.getBasicArmor();
     }
 
-    int getMagicResistance(){
+    float getMagicResistance() {
         return stats.getBasicMagicResistance();
     }
 
