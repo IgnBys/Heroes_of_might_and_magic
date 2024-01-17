@@ -69,6 +69,19 @@ public class MainBattleController implements PropertyChangeListener {
                         gameEngine.move(currentPoint);
                     });
                 }
+                if( gameEngine.getCurrentSpell()!=null  ) {
+                    if(gameEngine.getCreature( currentPoint ).isPresent()){
+
+                        mapTile.setBackground( Color.ORANGE );
+                        mapTile.addEventHandler( MouseEvent.MOUSE_CLICKED, ( e ) -> {
+                            gameEngine.castSpell( currentPoint );
+                            gameEngine.setCurrentSpell(null);
+                            refreshGui();
+
+                        } );
+
+                    }
+                }
                 if (gameEngine.canAttack(currentPoint)) {
                     mapTile.setBackground(Color.RED);
                     mapTile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {

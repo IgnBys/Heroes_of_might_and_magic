@@ -2,7 +2,9 @@ package pl.psi;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import pl.psi.creatures.Creature;
@@ -77,6 +79,13 @@ public class GameEngine {
         } else {
             return hero2.getSpellBook();
         }
+    }
+
+    public void castSpell(final Point aPoint) {
+        if (board.getCreature(aPoint).isPresent()) {
+            currentSpell.cast(board.getCreature(aPoint).get());
+        }
+        pass();
     }
     public Spell getCurrentSpell() {
         return currentSpell;
