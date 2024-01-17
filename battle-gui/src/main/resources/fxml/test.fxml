@@ -17,7 +17,7 @@
             <ImageView>
                 <!-- Путь к изображению -->
                 <image>
-                    <Image url='../spells/DamageSpells/Magic_Arrow.png'/>
+                    <Image url='../spells/Magic_Arrow.png'/>
                 </image>
             </ImageView>
         </graphic>

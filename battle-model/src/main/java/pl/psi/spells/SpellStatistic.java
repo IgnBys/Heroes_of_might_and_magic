@@ -17,7 +17,7 @@ public enum SpellStatistic implements SpellStatisticIf
     STONE_SKIN("Stone_Skin", 0, 0,6,
             "Increases the defense of the selected/all friendly unit." ),
 
-    DISRUPTING_RAY("Disrapting_Ray", 0,0,-5,
+    DISRUPTING_RAY("Disrupting_Ray", 0,0,-5,
             "Reduces the selected enemy unit's defense strength. A single enemy may be targeted multiple times by this spell."),
 
 //    FORTUNE("Fortune", 0,0,0,0,0,"Increases the luck of the selected/all friendly unit."),

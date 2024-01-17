@@ -1,5 +1,10 @@
 package pl.psi.gui;
 
+import javafx.geometry.Insets;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import pl.psi.GameEngine;
 import pl.psi.Hero;
 import pl.psi.Point;
@@ -12,13 +17,17 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.psi.creatures.Creature;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+
 import pl.psi.gui.Start;
+import pl.psi.spells.Spell;
 
 public class MainBattleController implements PropertyChangeListener {
     private final GameEngine gameEngine;
@@ -38,9 +47,8 @@ public class MainBattleController implements PropertyChangeListener {
         refreshGui();
         gameEngine.addObserver(this);
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> gameEngine.pass());
-        windowButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> Start.setNewScene());
+        windowButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> setNewScene());
     }
-
 
 
     private void refreshGui() {
@@ -70,6 +78,64 @@ public class MainBattleController implements PropertyChangeListener {
                 gridMap.add(mapTile, x, y);
             }
         }
+    }
+
+    private void printClickedButton(Button button) {
+        System.out.println(button.getId());
+    }
+
+    private void setNewScene() {
+        Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+
+        List<Spell> spellBook = gameEngine.getSpellBook();
+        List<Button> spellButtonList = new ArrayList<>();
+        GridPane spellBookGrid = new GridPane();
+        spellBookGrid.setMinSize(350, 200);
+        spellBookGrid.setPadding(new Insets(58, 10, 10, 51));
+        spellBookGrid.setVgap(5);
+        spellBookGrid.setHgap(5);
+        for (Spell spell : spellBook) {
+            Button spellButton = new Button(spell.getName());
+            try {
+                Image image = new Image("spells/" + spell.getName() + ".png");
+                ImageView imageView = new ImageView(image);
+
+                spellButton.setGraphic(imageView);
+                spellButton.setContentDisplay(ContentDisplay.TOP);
+            } catch (IllegalArgumentException ex) {
+                ex.printStackTrace();
+            }
+            spellButton.setOnAction(e -> {
+                primaryStage.close();
+                gameEngine.setCurrentSpell(spell);
+                refreshGui();
+            });
+
+            spellButtonList.add(spellButton);
+
+        }
+
+        int gridWidth = (int) Math.ceil(Math.sqrt(spellButtonList.size()));
+        int counter = 0;
+
+        for (int i = 0; i < gridWidth; i++) {
+            for (int k = 0; k < gridWidth; k++) {
+                if (counter < spellButtonList.size()) {
+                    spellBookGrid.add(spellButtonList.get(counter), k, i);
+                    counter++;
+                }
+            }
+        }
+        Image backgroundImage = new Image("/spells/book.png"); // Replace with the actual path
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
+        BackgroundImage backgroundImageObj = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
+        Background background = new Background(backgroundImageObj);
+        spellBookGrid.setBackground(background);
+        Scene scene1 = new Scene(spellBookGrid, 500, 500);
+
+        primaryStage.setScene(scene1);
+        primaryStage.showAndWait();
     }
 
     @Override

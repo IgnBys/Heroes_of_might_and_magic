@@ -8,41 +8,64 @@
 <?import java.lang.String?>
 <?import java.lang.Integer?>
 <?import javafx.geometry.Insets?>
-<GridPane styleClass="rootGridPane" stylesheets="@css/spell-decor.css" xmlns="http://javafx.com/javafx/8.0.171"
-          xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.TextFlow?>
+<VBox styleClass="rootGridPane" stylesheets="@css/spell-decor.css" xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1">
 
-<!--    <HBox spacing="25">-->
-<!--        <padding><Insets top="60" left="60"/></padding>-->
-<!--        <VBox>-->
-<!--            <Button fx:id="button1"  styleClass="button1" />-->
-<!--            <Label text="Button 1"/>-->
-<!--        </VBox>-->
-<!--        <VBox>-->
-<!--            <Button fx:id="button2"  styleClass="button2" />-->
-<!--            <Label text="Button 2"/>-->
-<!--        </VBox>-->
-<!--    </HBox>-->
-<!--    <HBox spacing="25">-->
-<!--        <padding><Insets top="150" left="60"/></padding>-->
-<!--        <VBox>-->
-<!--            <padding><Insets top="-11" /></padding>-->
+    <GridPane vgap="10" hgap="10" >
+        <padding>
+            <Insets top="55" left="48"/>
+        </padding>
+        <Button GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <graphic>
+                <VBox alignment="BOTTOM_CENTER">
+                    <ImageView>
+                        <image>
+                            <Image url="/spells/Armageddon.png"/>
+                        </image>
+                    </ImageView>
+                    <Label text="Button1"/>
+                </VBox>
+            </graphic>
+        </Button>
 
-<!--            <Button fx:id="button3"  styleClass="button3" />-->
-<!--            <Label text="Button 3">-->
-<!--                <padding><Insets top="-7" /></padding>-->
+        <Button GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <graphic>
+                <VBox alignment="BOTTOM_CENTER">
+                    <ImageView>
+                        <image>
+                            <Image url="/spells/Armageddon.png"/>
+                        </image>
+                    </ImageView>
+                    <Label text="Button2"/>
+                </VBox>
+            </graphic>
+        </Button>
+        <Button GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <graphic>
+                <VBox alignment="BOTTOM_CENTER">
+                    <ImageView>
+                        <image>
+                            <Image url="/spells/Armageddon.png"/>
+                        </image>
+                    </ImageView>
+                    <Label text="Button3"/>
+                </VBox>
+            </graphic>
+        </Button>
+        <Button GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <graphic>
+                <VBox alignment="BOTTOM_CENTER">
+                    <ImageView>
+                        <image>
+                            <Image url="/spells/Armageddon.png"/>
+                        </image>
+                    </ImageView>
+                    <Label text="Button4"/>
+                </VBox>
+            </graphic>
+        </Button>
+    </GridPane>
 
-<!--            </Label>-->
-<!--        </VBox>-->
-<!--        <VBox>-->
-<!--            <padding><Insets left="-15" /></padding>-->
 
-<!--            <Button fx:id="button4"  styleClass="button4" />-->
-<!--            <Label text="Button 4"/>-->
-
-
-<!--        </VBox>-->
-<!--    </HBox>-->
-
-
-
-</GridPane>
+</VBox>

@@ -2,7 +2,7 @@
     -fx-pref-width: 66px;
     -fx-pref-height: 48px;
     -fx-background-color: transparent;
-    -fx-background-image: url('../../spells/DamageSpells/Armageddon.png');
+    -fx-background-image: url('../../spells/Armageddon.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
 }
@@ -10,7 +10,7 @@
     -fx-pref-width: 66px;
     -fx-pref-height: 48px;
     -fx-background-color: transparent;
-    -fx-background-image: url('../../spells/DamageSpells/Fireball.png');
+    -fx-background-image: url('../../spells/Fireball.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
 }
@@ -18,7 +18,7 @@
     -fx-pref-width: 85px;
     -fx-pref-height: 65px;
     -fx-background-color: transparent;
-    -fx-background-image: url('../../spells/DamageSpells/Land_Mine.png');
+    -fx-background-image: url('../../spells/Land_Mine.png');
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
 
@@ -26,7 +26,7 @@
      -fx-pref-width: 66px;
      -fx-pref-height: 48px;
      -fx-background-color: transparent;
-     -fx-background-image: url('../../spells/DamageSpells/Magic_Arrow.png');
+     -fx-background-image: url('../../spells/Magic_Arrow.png');
      -fx-background-size: contain;
      -fx-background-repeat: no-repeat;
  }

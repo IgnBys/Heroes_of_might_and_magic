@@ -13,6 +13,7 @@ public class Hero
 {
     @Getter
     private final List< Creature > creatures;
+    @Getter
     private final List<Spell> spellBook;
 
     public Hero( final List< Creature > aCreatures, final List<Spell> aSpellBook )
