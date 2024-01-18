@@ -70,7 +70,10 @@ public class GameEngine {
     }
 
     public boolean isCurrentCreature(Point aPoint) {
+
+
         return Optional.of(turnQueue.getCurrentCreature()).equals(board.getCreature(aPoint));
+
     }
 
     public List<Spell> getSpellBook() {
@@ -85,6 +88,12 @@ public class GameEngine {
         if (board.getCreature(aPoint).isPresent()) {
             currentSpell.cast(board.getCreature(aPoint).get());
         }
+        System.out.println("Current Armor: "+turnQueue.getCurrentCreature().getCurrentArmor());
+        System.out.println("Current Attack: "+turnQueue.getCurrentCreature().getCurrentAttack());
+        System.out.println("Current HP: "+turnQueue.getCurrentCreature().getCurrentHp());
+
+        System.out.println("Current MagicResistance: "+turnQueue.getCurrentCreature().getCurrentMagicResistance());
+        System.out.println("-------");
         pass();
     }
     public Spell getCurrentSpell() {

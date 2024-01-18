@@ -80,6 +80,8 @@ public class MainBattleController implements PropertyChangeListener {
 
                         } );
 
+
+
                     }
                 }
                 if (gameEngine.canAttack(currentPoint)) {

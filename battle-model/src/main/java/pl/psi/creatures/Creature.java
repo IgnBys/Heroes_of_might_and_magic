@@ -89,14 +89,6 @@ public class Creature implements PropertyChangeListener {
                 aCreature.setAmount(aCreature.getAmount() - 1);
             }
 
-            //!!!!!!!!!apply spell damage (new method) w creature
-            // spell damage * 0,2(float magic resistance) = HP
-//     !!!!       send this method to class creature
-
-
-//     !!!!       zmiana statystyk na jakąs ilość tur
-
-            //mozna zrobic class creatureBuff który będzie przechowywał listę wszystkich obrażeń
             //
         } else {
             aSpell.useSpellCalculator(aCreature, aSpell);
