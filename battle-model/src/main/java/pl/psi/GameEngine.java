@@ -52,6 +52,13 @@ public class GameEngine {
     }
 
     public void pass() {
+        System.out.println(turnQueue.getCurrentCreature().getName());
+        System.out.println("Current Armor: "+turnQueue.getCurrentCreature().getCurrentArmor());
+        System.out.println("Current Attack: "+turnQueue.getCurrentCreature().getCurrentAttack());
+        System.out.println("Current HP: "+turnQueue.getCurrentCreature().getCurrentHp());
+
+        System.out.println("Current MagicResistance: "+turnQueue.getCurrentCreature().getCurrentMagicResistance());
+        System.out.println("-------");
         turnQueue.next();
     }
 
@@ -88,12 +95,7 @@ public class GameEngine {
         if (board.getCreature(aPoint).isPresent()) {
             currentSpell.cast(board.getCreature(aPoint).get());
         }
-        System.out.println("Current Armor: "+turnQueue.getCurrentCreature().getCurrentArmor());
-        System.out.println("Current Attack: "+turnQueue.getCurrentCreature().getCurrentAttack());
-        System.out.println("Current HP: "+turnQueue.getCurrentCreature().getCurrentHp());
 
-        System.out.println("Current MagicResistance: "+turnQueue.getCurrentCreature().getCurrentMagicResistance());
-        System.out.println("-------");
         pass();
     }
     public Spell getCurrentSpell() {

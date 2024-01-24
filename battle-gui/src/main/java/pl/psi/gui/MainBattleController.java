@@ -79,9 +79,6 @@ public class MainBattleController implements PropertyChangeListener {
                             refreshGui();
 
                         } );
-
-
-
                     }
                 }
                 if (gameEngine.canAttack(currentPoint)) {
@@ -95,9 +92,6 @@ public class MainBattleController implements PropertyChangeListener {
         }
     }
 
-    private void printClickedButton(Button button) {
-        System.out.println(button.getId());
-    }
 
     private void setNewScene() {
         Stage primaryStage = new Stage();
@@ -142,7 +136,7 @@ public class MainBattleController implements PropertyChangeListener {
                 }
             }
         }
-        Image backgroundImage = new Image("/spells/book.png"); // Replace with the actual path
+        Image backgroundImage = new Image("/spells/book.png");
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage backgroundImageObj = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
         Background background = new Background(backgroundImageObj);

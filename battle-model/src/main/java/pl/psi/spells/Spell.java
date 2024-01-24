@@ -31,9 +31,17 @@ public class Spell {
 
     }
 
+
+    //test dla 2 kreatur, jedna z obrażeniem, jedna bez i patrzeć ile zdrowia mają
     public void cast(final Creature aCreature) {
         if (aCreature.isAlive()) {
-            aCreature.applySpell(aCreature, this);
+            if (getAttack() != 0) {
+                final int damage = (int)(getAttack()- (getAttack() * ((float)aCreature.getCurrentMagicResistance() / 100)));
+                aCreature.applySpell(aCreature, damage);
+            }
+            else {
+                useSpellCalculator(aCreature, this);
+            }
 
         }
     }
@@ -43,7 +51,7 @@ public class Spell {
 //        currentHp = attack * aCreature.getMagicResistance();
 //    }
 
-    public void useSpellCalculator(final Creature aCreature, final Spell aSpell){
+    private void useSpellCalculator(final Creature aCreature, final Spell aSpell){
         SpellCalculator.calculateCreatureAttack(aSpell, aCreature);
         SpellCalculator.calculateCreatureArmor(aSpell, aCreature);
     }

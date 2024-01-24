@@ -28,12 +28,12 @@ public class spellTest {
                         .basicMagicResistance(20).basicArmor(10)
                         .build())
                 .build();
-        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(10)
+        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder().attack(50)
                 .changeArmor(6).build()).build();
         // when
         AVADAKEDAVRA.cast(dragon);
         // then
-        assertThat(dragon.getCurrentHp()).isEqualTo(94);
+        assertThat(dragon.getCurrentHp()).isEqualTo(60);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class spellTest {
         // when
         AVADAKEDAVRA.cast(dragon);
         // then
-        assertThat(dragon.getCurrentArmor()).isEqualTo(16);
+        assertThat(dragon.getCurrentAttack()).isEqualTo(10);
     }
 
     @Test
@@ -65,12 +65,12 @@ public class spellTest {
                         .build())
                 .build();
         final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder()
-                .changeArmor(6).build()).build();
+                .changeAttack(6).build()).build();
         // when
         AVADAKEDAVRA.cast(dragon);
         // then
 
-        assertThat(dragon.getCurrentMagicResistance()).isEqualTo(26);
+        assertThat(dragon.getCurrentAttack()).isEqualTo(11);
     }
 
     @Test
@@ -93,7 +93,74 @@ public class spellTest {
 
         // then
 
-        assertThat(dragon.getCurrentHp()).isEqualTo(96);
+        assertThat(dragon.getCurrentHp()).isEqualTo(93);
+    }
+
+    @Test
+    void attackTwoCreaturesWhereTheFirstHasChangesAndTheSecondHasNot() {
+        // given
+        final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .basicAttack(10)
+                        .basicMagicResistance(20).basicArmor(10)
+                        .build())
+                .build();
+        final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .basicAttack(10)
+                        .basicMagicResistance(20).basicArmor(10)
+                        .build())
+                .build();
+        final Spell changeArmor = new Spell.Builder().statistic(SpellStats.builder()
+                .changeArmor(20).build()).build();
+        final Spell AVADAKEDAVRA = new Spell.Builder().statistic(SpellStats.builder()
+                .attack(10).build()).build();
+        // when
+        changeArmor.cast(dragon);
+        AVADAKEDAVRA.cast(dragon);
+        AVADAKEDAVRA.cast(angel);
+        // then
+        assertThat(dragon.getCurrentHp()).isEqualTo(94);
+        assertThat(angel.getCurrentHp()).isEqualTo(92);
+
+    }
+
+
+    @Test
+    void creatureShouldAttackAnotherWithChangedArmor() {
+        // given
+        final Creature dragon = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .basicAttack(50)
+                        .basicMagicResistance(20).basicArmor(10)
+                        .build())
+                .build();
+        final Creature angel = new Creature.Builder().statistic(CreatureStats.builder()
+                        .maxHp(100)
+                        .damage(Range.closed(10, 10))
+                        .basicAttack(50)
+                        .basicMagicResistance(20).basicArmor(10)
+                        .build())
+                .build();
+        final Spell changeArmor = new Spell.Builder().statistic(SpellStats.builder()
+                .changeArmor(6).build()).build();
+//        final Spell changeAttack = new Spell.Builder().statistic(SpellStats.builder()
+//                .changeAttack(10).build()).build();
+        // when
+        changeArmor.cast(dragon);
+//        if we want check dragons damage when it counterAttacks
+//        changeAttack.cast(dragon);
+        angel.attack(dragon);
+        // then
+        assertThat(dragon.getCurrentHp()).isEqualTo(73);
+//        if dragon counterAttack angel
+//        assertThat(angel.getCurrentHp()).isEqualTo(60);
+
+
+
     }
 
 }

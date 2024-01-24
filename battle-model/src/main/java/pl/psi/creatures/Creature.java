@@ -77,22 +77,19 @@ public class Creature implements PropertyChangeListener {
         }
         aDefender.setAmount(aDefender.getAmount() - amountToSubstract);
     }
+//logika
+    public void applySpell(final Creature aDefender, final int aDamage) {
+        int hpToSubstract = aDamage % aDefender.getMaxHp();
+        int amountToSubstract = Math.round(aDamage / aDefender.getMaxHp());
 
-    public void applySpell(final Creature aCreature, final Spell aSpell) {
-        if (aSpell.getAttack() != 0) {
-//            aCreature.attack(aCreature, this);
-            //aCreature.spellAttack(aCreature, this);
-            final int damage = (int) (aSpell.getAttack() - (aCreature.getCurrentMagicResistance()) * 0.2);
-            final int hp = aCreature.getCurrentHp() - damage;
-            aCreature.setCurrentHp(hp);
-            if (hp <= 0) {
-                aCreature.setAmount(aCreature.getAmount() - 1);
-            }
-
-            //
+        int hp = aDefender.getCurrentHp() - hpToSubstract;
+        if (hp <= 0) {
+            aDefender.setCurrentHp(aDefender.getMaxHp() - hp);
+            aDefender.setAmount(aDefender.getAmount() - 1);
         } else {
-            aSpell.useSpellCalculator(aCreature, aSpell);
+            aDefender.setCurrentHp(hp);
         }
+        aDefender.setAmount(aDefender.getAmount() - amountToSubstract);
     }
 
     public int getMaxHp() {
@@ -136,17 +133,20 @@ public class Creature implements PropertyChangeListener {
         return stats.getDamage();
     }
 
-    int getAttack() {
-        return stats.getBasicAttack();
+
+    //ZMIENIC!
+    public int getAttack() {
+        return getCurrentAttack();
     }
 
-    int getArmor() {
-        return stats.getBasicArmor();
+    //ZMIENIC!
+    public int getArmor() {
+        return getCurrentArmor();
+    }
+    public int getMagicResistance() {
+        return getCurrentMagicResistance();
     }
 
-    float getMagicResistance() {
-        return stats.getBasicMagicResistance();
-    }
 
     @Override
     public void propertyChange(final PropertyChangeEvent evt) {
